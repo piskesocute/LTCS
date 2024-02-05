@@ -1,6 +1,9 @@
 <script setup></script>
 <template>
-  <section class="relative overflow-hidden px-[24px] pb-[59px] pt-[96px] md:mt-[30px]" id="LTCS">
+  <section
+    class="relative overflow-hidden px-[24px] pb-[56px] pt-[96px] md:mt-[30px] md:pb-[90px]"
+    id="LTCS"
+  >
     <div
       class="relative lg:ml-[120px] md:ml-[100px] xl:ml-[180px] md:flex md:items-start md:justify-start"
     >
@@ -101,8 +104,13 @@
         </li>
       </ul>
     </div>
-    <div>
-      <div class="group relative mx-auto mt-[47px] h-[56px] w-[269px] overflow-hidden">
+    <div
+      class="mx-auto mt-[48px] flex justify-center md:mx-0 md:items-start md:justify-center md:gap-x-[80px]"
+    >
+      <div class="relative mt-[64px] hidden md:block">
+        <img class="block" src="../assets/images/footer.png" alt="" />
+      </div>
+      <div class="group relative h-[56px] w-[269px] overflow-hidden">
         <a
           href="#"
           target="_blank"
@@ -133,4 +141,8 @@
     ></div>
   </section>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// * {
+//   outline: 1px solid;
+// }
+</style>
