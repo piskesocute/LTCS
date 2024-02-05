@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <section class="relative overflow-hidden px-[24px] pb-[59px] pt-[56px]" id="LTCS">
+  <section class="relative overflow-hidden px-[24px] pb-[59px] pt-[96px] md:mt-[30px]" id="LTCS">
     <div
       class="relative lg:ml-[120px] md:ml-[100px] xl:ml-[180px] md:flex md:items-start md:justify-start"
     >

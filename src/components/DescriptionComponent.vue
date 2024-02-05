@@ -53,7 +53,9 @@ onUnmounted(() => {
 </script>
 <template>
   <main id="description">
-    <div class="py-[56px] pl-[24px] md:my-[30px] md:py-[70px] md:pl-[40px] xl:pl-[120px]">
+    <div
+      class="py-[56px] pl-[24px] md:mt-[30px] md:pb-[30px] md:pl-[40px] md:pt-[70px] xl:pl-[120px]"
+    >
       <div class="md:ml-[180px] md:flex md:items-start md:justify-start">
         <div class="mr-[24px] hidden lg:block">
           <p

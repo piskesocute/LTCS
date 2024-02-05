@@ -31,13 +31,15 @@ onMounted(() => {
     const descriptionHeight = description.offsetHeight;
     const LTCSHeight = LTCS.offsetHeight;
     const { scrollY } = window;
-
-    if (scrollY < headerHeight) {
-      currentScroll.value = 0;
-    } else if (scrollY < headerHeight + descriptionHeight) {
+    if (scrollY >= headerHeight && scrollY < headerHeight + descriptionHeight) {
       currentScroll.value = 1;
-    } else if (scrollY < headerHeight + descriptionHeight + LTCSHeight) {
+    } else if (
+      scrollY >= headerHeight + descriptionHeight &&
+      scrollY < headerHeight + descriptionHeight + LTCSHeight
+    ) {
       currentScroll.value = 2;
+    } else {
+      currentScroll.value = 0;
     }
   });
 });
@@ -94,7 +96,7 @@ onUnmounted(() => {
           </button>
           <div class="relative w-full">
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] duration-100 ease-in-out -translate-x-[50%]"
               :class="[currentScroll === 0 ? 'opacity-100' : 'opacity-0']"
             >
               <span
@@ -120,7 +122,7 @@ onUnmounted(() => {
           </button>
           <div class="relative w-full">
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] duration-100 ease-in-out -translate-x-[50%]"
               :class="[currentScroll === 1 ? 'opacity-100' : 'opacity-0']"
             >
               <span
@@ -147,7 +149,7 @@ onUnmounted(() => {
           </button>
           <div class="w-full" relative>
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] duration-100 ease-in-out -translate-x-[50%]"
               :class="[currentScroll === 2 ? 'opacity-100' : 'opacity-0']"
             >
               <span
