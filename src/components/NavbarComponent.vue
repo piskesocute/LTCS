@@ -4,13 +4,46 @@ const toggle = () => {
   isOpen.value = !isOpen.value;
 };
 
+const currentScroll = ref(0);
 const scrollToForm = (target) => {
   if (isOpen.value) {
     isOpen.value = !isOpen.value;
   }
+
+  if (target === 'header') {
+    currentScroll.value = 0;
+  } else if (target === 'description') {
+    currentScroll.value = 1;
+  } else if (target === 'LTCS') {
+    currentScroll.value = 2;
+  }
+
   const idx = document.getElementById(target);
-  idx.scrollIntoView();
+  idx.scrollIntoView({ behavior: 'smooth' });
 };
+
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    const description = document.getElementById('description');
+    const LTCS = document.getElementById('LTCS');
+    const headerHeight = header.offsetHeight;
+    const descriptionHeight = description.offsetHeight;
+    const LTCSHeight = LTCS.offsetHeight;
+    const { scrollY } = window;
+
+    if (scrollY < headerHeight) {
+      currentScroll.value = 0;
+    } else if (scrollY < headerHeight + descriptionHeight) {
+      currentScroll.value = 1;
+    } else if (scrollY < headerHeight + descriptionHeight + LTCSHeight) {
+      currentScroll.value = 2;
+    }
+  });
+});
+onUnmounted(() => {
+  window.removeEventListener('scroll');
+});
 </script>
 <template>
   <nav
@@ -54,13 +87,15 @@ const scrollToForm = (target) => {
           <button
             @click="scrollToForm('header')"
             href="#"
-            class="block h-full px-[24px] text-center text-[24px] text-content font-medium transition duration-100 md:text-[16px] group-hover:text-secondary"
+            class="block h-full px-[24px] text-center text-[24px] font-medium transition duration-100 md:text-[16px]"
+            :class="[currentScroll === 0 ? 'text-secondary' : 'text-content']"
           >
             首頁
           </button>
           <div class="relative w-full">
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] opacity-0 transition duration-100 ease-in-out -translate-x-[50%] group-hover:opacity-100"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              :class="[currentScroll === 0 ? 'opacity-100' : 'opacity-0']"
             >
               <span
                 class="absolute right-0 top-0 h-[2px] w-full flex justify-end gap-x-[2px] rounded-[10px] transition"
@@ -77,14 +112,16 @@ const scrollToForm = (target) => {
         <li class="h-[12px] w-[1px] bg-[#e4e4e4]" />
         <li class="group text-center">
           <button
-            class="block h-full px-[24px] text-center text-[24px] text-content font-medium transition duration-100 md:text-[16px] group-hover:text-secondary"
+            class="block h-full px-[24px] text-center text-[24px] font-medium transition duration-100 md:text-[16px]"
             @click="scrollToForm('description')"
+            :class="[currentScroll === 1 ? 'text-secondary' : 'text-content']"
           >
             照顧現場
           </button>
           <div class="relative w-full">
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] opacity-0 transition duration-100 ease-in-out -translate-x-[50%] group-hover:opacity-100"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              :class="[currentScroll === 1 ? 'opacity-100' : 'opacity-0']"
             >
               <span
                 class="absolute right-0 top-0 h-[2px] w-full flex justify-end gap-x-[2px] rounded-[10px] transition"
@@ -103,13 +140,15 @@ const scrollToForm = (target) => {
           <button
             @click="scrollToForm('LTCS')"
             href="#"
-            class="block h-full px-[24px] text-center text-[24px] text-content font-medium transition duration-100 md:text-[16px] group-hover:text-secondary"
+            class="text-[24px]font-medium block h-full px-[24px] text-center transition duration-100 md:text-[16px]"
+            :class="[currentScroll === 2 ? 'text-secondary' : 'text-content']"
           >
             一看就懂長照2.0
           </button>
-          <div class="relative w-full">
+          <div class="w-full" relative>
             <div
-              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] opacity-0 transition duration-100 ease-in-out -translate-x-[50%] group-hover:opacity-100"
+              class="absolute left-1/2 top-0 h-[2px] w-[34px] bg-[#e4e4e4] transition duration-100 ease-in-out -translate-x-[50%]"
+              :class="[currentScroll === 2 ? 'opacity-100' : 'opacity-0']"
             >
               <span
                 class="absolute right-0 top-0 h-[2px] w-full flex justify-end gap-x-[2px] rounded-[10px] transition"
@@ -133,8 +172,9 @@ const scrollToForm = (target) => {
       >
         <li class="text-center">
           <button
-            class="block w-full py-4 text-[24px] text-content font-medium"
+            class="block w-full py-4 text-[24px] font-medium"
             @click="scrollToForm('header')"
+            :class="[currentScroll === 0 ? 'text-secondary' : 'text-content']"
           >
             首頁
           </button>
@@ -146,6 +186,7 @@ const scrollToForm = (target) => {
           <button
             class="block w-full py-4 text-[24px] text-content font-medium"
             @click="scrollToForm('description')"
+            :class="[currentScroll === 1 ? 'text-secondary' : 'text-content']"
           >
             照顧現場
           </button>
@@ -157,6 +198,7 @@ const scrollToForm = (target) => {
           <button
             @click="scrollToForm('LTCS')"
             class="block w-full py-4 text-[24px] text-content font-medium"
+            :class="[currentScroll === 2 ? 'text-secondary' : 'text-content']"
           >
             一看就懂長照2.0
           </button>

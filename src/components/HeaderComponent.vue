@@ -9,23 +9,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="id= pt-[55px] md:pt-[72px]" id="header"></div>
-  <header
-    class="reactive h-[calc(100dvh-55px)] w-full bg-[position:top_0%_left_30%] bg-[url(/images/header.png)] bg-cover bg-no-repeat md:h-[calc(100dvh-72px)] lg:flex lg:items-start lg:justify-end 2xl:bg-[position:top_40%_left_0px] md:bg-[position:top_60%_left_0px]"
-  >
-    <div class="mask lg:hidden"></div>
-    <img
-      class="absolute bottom-[64px] left-[50%] z-10 my-[24px] max-w-[327px] translate-x-[-50%] lg:hidden"
-      src="../assets/images/title-m.svg"
-      alt=""
-    />
-    <img
-      src="../assets/images/title.svg"
-      class="fadeInUp mr-[30px] mt-[152px] hidden max-w-[450px] xl:mr-[88px] lg:block xl:max-w-[594px]"
-      :class="infiniteAnimation ? 'bob' : 'fadeInUp'"
-      alt=""
-    />
-  </header>
+  <div class="id= pt-[55px] md:pt-[72px]" id="header">
+    <header
+      class="reactive h-[calc(100dvh-55px)] w-full bg-[position:top_0%_left_30%] bg-[url(/images/header.png)] bg-cover bg-no-repeat md:h-[calc(100dvh-72px)] lg:flex lg:items-start lg:justify-end 2xl:bg-[position:top_40%_left_0px] md:bg-[position:top_60%_left_0px]"
+    >
+      <div class="mask lg:hidden"></div>
+      <img
+        class="absolute bottom-[64px] left-[50%] z-10 my-[24px] max-w-[327px] translate-x-[-50%] lg:hidden"
+        src="../assets/images/title-m.svg"
+        alt=""
+      />
+      <img
+        src="../assets/images/title.svg"
+        class="fadeInUp mr-[30px] mt-[152px] hidden max-w-[450px] xl:mr-[88px] lg:block xl:max-w-[594px]"
+        :class="infiniteAnimation ? 'bob' : 'fadeInUp'"
+        alt=""
+      />
+    </header>
+  </div>
 </template>
 
 <style lang="scss" scoped>

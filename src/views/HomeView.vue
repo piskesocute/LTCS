@@ -3,7 +3,7 @@
 <template>
   <NavbarComponent />
   <HeaderComponent />
-  <DescriptComponent />
+  <DescriptionComponent />
   <FiveMinComponent />
   <FooterComponent />
 </template>
